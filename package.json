@@ -1,0 +1,29 @@
+{
+  "name": "nrk-radio-discord-bot",
+  "version": "2.0.0",
+  "description": "En radio bot for nrk og discord",
+  "main": "bot.js",
+  "dependencies": {
+    "discord.js": "^12.3.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node bot.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pomdre/NRK-radio-discord-bot.git"
+  },
+  "keywords": [
+    "Nrk",
+    "radio",
+    "bot",
+    "discord"
+  ],
+  "author": "Pomdre",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Pomdre/NRK-radio-discord-bot/issues"
+  },
+  "homepage": "https://github.com/Pomdre/NRK-radio-discord-bot#readme"
+}

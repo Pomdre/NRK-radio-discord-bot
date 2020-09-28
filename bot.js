@@ -1,94 +1,64 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//  Inevneter meg https://discordapp.com/oauth2/authorize?client_id=638025532688171027&permissions=66186560&scope=bot   //
-//  Laget av Sondre Batalden @Pomdre                                                                                    //
+//  Invite https://discordapp.com/oauth2/authorize?client_id=638025532688171027&permissions=66186560&scope=bot          //
+//  Laget av @Pomdre                                                                                                    //
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const settings = require('./settings.json');
 
-client.on('ready', () => {
-  console.log(`Logged in as ${client.user.tag}!`);
-});
-
-var prefix = "!nrk";
-
 client.on('message', msg => {
-  if (msg.content === prefix + ' ping') {
-    msg.reply('pong');
-  }
-});
-
-const streamOptions = { filter : 'audioonly', volume : 0.5, bitrate : 'auto', passes  : 1  };
-
-
-client.on('message', msg => {
-
+  if (msg.author.bot) return;
+  // Command can only be used in a server
   if (!msg.guild) return;
 
-  if (msg.content === prefix + ' p1') {
-    if (msg.member.voiceChannel) {
-      msg.member.voiceChannel.join()
-        .then(connection => {
+  // Set required variables
+  const prefix = '!nrk lytt',
+      args = msg.content.slice(prefix.length).split(' '),
+      cmd = args.shift().toLowerCase(),
+      radioChannel = (args.shift() || '').toLowerCase(),
+      voiceChannel = msg.member.voice.channel,
+      radioServers = {
+          'p1': 'http://lyd.nrk.no/nrk_radio_p1_ostlandssendingen_mp3_m',
+          'p2': 'http://lyd.nrk.no/nrk_radio_p2_mp3_m',
+          'mp3': 'http://lyd.nrk.no/nrk_radio_mp3_mp3_m'
+      };
+      const streamOptions = { filter : 'audioonly', bitrate : 'auto', highWaterMark : 12  };
 
-          msg.reply('Spiller nå: NRK p1');
-          const dispatcher = connection.playArbitraryInput('http://lyd.nrk.no/nrk_radio_p1_ostlandssendingen_mp3_m', streamOptions);
+  // Stop if prefix isn't used
+  if (!msg.content.startsWith(prefix)) return;
 
-        client.on('message', msg => {
-          if (msg.content === prefix + ' stop') {
-            dispatcher.end()
+  // Require the user to be in a vioce channel
+  if (!voiceChannel) return msg.reply('Du må være i en talekanal først!');
+
+  // Require a valid radio server
+  if (typeof radioServers[radioChannel] !== 'string') return msg.reply(`${radioChannel} er ikke en gyldig tjener!`);
+
+  // Join the voice channel
+   voiceChannel.join()
+  .then(connection => {
+      const dispatcher = connection.play(radioServers[radioChannel], streamOptions);
+      msg.reply(`Spiller nå: NRK ${radioChannel}`);
+
+      client.on('message', msg => {
+        if (msg.author.bot) return;
+          // Set required variables
+          const prefix = '!nrk ',
+              args1 = msg.content.slice(prefix.length).split(' '),
+              cmd1 = args1.shift().toLowerCase();
+          
+          let method;
+          switch (cmd1) {
+              case 'stop': method = 'destroy';
+              case 'pause': method = 'pause';
+              case 'fortsett': method = 'resume';
+              case 'forlat': return voiceChannel.leave();
+              default: return;
           }
-          if (msg.content === prefix + ' pause') {
-            dispatcher.pause()
-          }
-          if (msg.content === prefix + ' fortsett') {
-            dispatcher.resume()
-          }
-          if (msg.content === prefix + ' forlat') {
-            msg.member.voiceChannel.leave();
-          }
-        });
+          dispatcher[method];
 
-        })
-        .catch(console.log);
-    } else {
-      msg.reply('Du må være i en talekanal først!');
-    }
-  }
-
-
-
-  if (msg.content === prefix + ' p2') {
-    if (msg.member.voiceChannel) {
-      msg.member.voiceChannel.join()
-        .then(connection => {
-
-          msg.reply('Spiller nå: NRK p2');
-          const dispatcher = connection.playArbitraryInput('http://lyd.nrk.no/nrk_radio_p2_mp3_m', streamOptions);
-
-        client.on('message', msg => {
-          if (msg.content === prefix + ' stop') {
-            dispatcher.end()
-          }
-          if (msg.content === prefix + ' pause') {
-            dispatcher.pause()
-          }
-          if (msg.content === prefix + ' fortsett') {
-            dispatcher.resume()
-          }
-          if (msg.content === prefix + ' forlat') {
-            msg.member.voiceChannel.leave();
-          }
-        });
-
-        })
-        .catch(console.log);
-    } else {
-      msg.reply('Du må være i en talekanal først!');
-    }
-  }
-
+          // Based on the method, reply with a message?
+      });
+  });
 });
-
-
 
 client.login(settings.token);
