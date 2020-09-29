@@ -83,7 +83,7 @@ const hjelp = {
   "description": "**Kommandoer for boten og annen info**",
   "color": 16777215,
   "footer": {
-    "text": "Laget av @Pomdre#0449 | Er med i 8 server(e)!"
+    "text": `Laget av @Pomdre#0449 | Er med i ${client.guilds.cache.size} server(e)!`
   },
   "fields": [
     {
