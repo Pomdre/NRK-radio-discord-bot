@@ -6,10 +6,23 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 const settings = require('./settings.json');
 
+client.once("ready", () => {
+    console.log(`Logged in as ${client.user.tag}!`);
+    console.log(`Serving ${client.guilds.cache.size} servers`);
+  });
+  
+  client.once("reconnecting", () => {
+    console.log("Reconnecting!");
+  });
+  
+  client.once("disconnect", () => {
+    console.log("Disconnect!");
+  });
+
 client.on('message', msg => {
   if (msg.author.bot) return;
   // Command can only be used in a server
-  if (!msg.guild) return;
+  if (!msg.guild) return msg.reply('Du kan bare sende meg kommandoer fra en server jeg er med i :D');
 
   // Set required variables
   const prefix = '!nrk lytt',
@@ -20,6 +33,7 @@ client.on('message', msg => {
       radioServers = {
           'p1': 'http://lyd.nrk.no/nrk_radio_p1_ostlandssendingen_mp3_m',
           'p2': 'http://lyd.nrk.no/nrk_radio_p2_mp3_m',
+          'p3': 'http://lyd.nrk.no/nrk_radio_p3_mp3_m',
           'mp3': 'http://lyd.nrk.no/nrk_radio_mp3_mp3_m'
       };
       const streamOptions = { filter : 'audioonly', bitrate : 'auto', highWaterMark : 12  };
@@ -48,16 +62,16 @@ client.on('message', msg => {
           
           let method;
           switch (cmd1) {
-              case 'stop': method = 'destroy';
-              case 'pause': method = 'pause';
-              case 'fortsett': method = 'resume';
+              case 'stop': method = 'destroy', msg.reply(`Stoppet: NRK ${radioChannel}`);
+              case 'pause': return dispatcher.pause(true), msg.reply(`Pauset: NRK ${radioChannel}`);
+              case 'fortsett': return dispatcher.resume(), msg.reply(`Fortsetter å spille: NRK ${radioChannel}`);
               case 'forlat': return voiceChannel.leave();
               default: return;
           }
           dispatcher[method];
-
-          // Based on the method, reply with a message?
       });
+      connection.on("error", error => console.error(error));
+      dispatcher.on('error', console.error);
   });
 });
 
