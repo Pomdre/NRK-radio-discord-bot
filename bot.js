@@ -4,7 +4,7 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const settings = require('./settings.json');
+const args = require('yargs').argv;
 
 client.once("ready", () => {
     console.log(`Logged in as ${client.user.tag}!`);
@@ -31,7 +31,7 @@ client.on('message', msg => {
       radioChannel = (args.shift() || '').toLowerCase(),
       voiceChannel = msg.member.voice.channel,
       radioServers = {
-          'p1': 'http://lyd.nrk.no/nrk_radio_p1_ostlandssendingen_mp3_m',
+          'p1': 'http://lyd.nrk.no/nrk_radio_p1_hordaland_aac_h',
           'p2': 'http://lyd.nrk.no/nrk_radio_p2_mp3_m',
           'p3': 'http://lyd.nrk.no/nrk_radio_p3_mp3_m',
           'mp3': 'http://lyd.nrk.no/nrk_radio_mp3_mp3_m'
@@ -75,4 +75,4 @@ client.on('message', msg => {
   });
 });
 
-client.login(settings.token);
+client.login(args.token);

@@ -4,7 +4,8 @@
   "description": "En radio bot for nrk og discord",
   "main": "bot.js",
   "dependencies": {
-    "discord.js": "^12.3.1"
+    "discord.js": "^12.3.1",
+    "yargs": "^16.0.3"
   },
   "devDependencies": {},
   "scripts": {
