@@ -19,5 +19,5 @@ npm install ffmpeg-static
 
 ### Hvordan bruke
 ```
-node bot.js --token=dinhemeligetokenher
+node nrk_main.js --token=dinhemeligetokenher
 ```

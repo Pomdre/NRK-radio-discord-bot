@@ -22,7 +22,7 @@ client.once("ready", () => {
 client.on('message', msg => {
   if (msg.author.bot) return;
   // Command can only be used in a server
-  if (!msg.guild) return msg.reply('Du kan bare sende meg kommandoer fra en server jeg er med i :D');
+  if (!msg.guild) return msg.reply('Du kan bare sende meg kommandoer fra server jeg er med i :D');
 
   // Set required variables
   const prefix = '!nrk lytt',
@@ -73,6 +73,59 @@ client.on('message', msg => {
       connection.on("error", error => console.error(error));
       dispatcher.on('error', console.error);
   });
+});
+
+//Help
+
+const hjelp = {
+  "embed": {
+  "title": "NRK Radio Hjelp",
+  "description": "**Kommandoer for boten og annen info**",
+  "color": 16777215,
+  "footer": {
+    "text": "Laget av @Pomdre#0449 | Er med i 8 server(e)!"
+  },
+  "fields": [
+    {
+      "name": "Velg en kanal:",
+      "value": "```!nrk lytt <kanal>```"
+    },
+    {
+      "name": "Stopp radioen med:",
+      "value": "```!nrk lytt <kanal>```",
+      "inline": true
+    },
+    {
+      "name": "Pause radioen med:",
+      "value": "```!nrk pause```",
+      "inline": true
+    },
+    {
+      "name": "Fortsett radioen etter den er pauset:",
+      "value": "```!nrk fortsett```",
+      "inline": true
+    },
+    {
+      "name": "Kast radioen ut av vinduet:",
+      "value": "```!nrk forlat```",
+      "inline": true
+    },
+    {
+      "name": "Inviter meg:",
+      "value": "https://discordapp.com/oauth2/authorize?client_id=638025532688171027&permissions=66186560&scope=bot"
+    },
+    {
+      "name": "Kildekoden min:",
+      "value": "https://github.com/Pomdre/NRK-radio-discord-bot"
+    }
+  ]
+ }
+};
+
+client.on('message', msg => {
+  if (msg.content.toLowerCase() === '!nrk' + ' hjelp') {
+  msg.reply(hjelp);
+  }
 });
 
 client.login(args.token);
