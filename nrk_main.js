@@ -6,9 +6,18 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 const args = require('yargs').argv;
 
+let currentStatus = null;
+let commands = ['!nrk <kanal>', '!nrk pause', '!nrk fortsett', '!nrk forlat']
+
 client.once("ready", () => {
     console.log(`Logged in as ${client.user.tag}!`);
     console.log(`Serving ${client.guilds.cache.size} servers`);
+    setInterval(() => {
+      if (currentStatus === null || ++currentStatus === commands.length) {
+        currentStatus = 0;
+      }
+      client.user.setActivity(commands[currentStatus]); //Set activity
+    }, 15e3);
   });
   
   client.once("reconnecting", () => {
@@ -88,11 +97,6 @@ const hjelp = {
     {
       "name": "Velg en kanal:",
       "value": "```!nrk <kanal>```"
-    },
-    {
-      "name": "Stopp radioen med:",
-      "value": "```!nrk stop```",
-      "inline": true
     },
     {
       "name": "Pause radioen med:",
