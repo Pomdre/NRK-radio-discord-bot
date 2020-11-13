@@ -41,7 +41,6 @@ client.on('message', msg => {
       voiceChannel = msg.member.voice.channel,
       radioServers = {
           'p1': 'http://lyd.nrk.no/nrk_radio_p1_hordaland_aac_h',
-          'p1 test': 'http://lyd.nrk.no/nrk_radio_p1_hordaland_aac_h',
           'p1+': 'http://lyd.nrk.no/nrk_radio_p1pluss_aac_h',
           'p1pluss': 'http://lyd.nrk.no/nrk_radio_p1pluss_aac_h',
           'p2': 'http://lyd.nrk.no/nrk_radio_p2_aac_h',
@@ -61,6 +60,11 @@ client.on('message', msg => {
           'p3x': 'http://lyd.nrk.no/nrk_radio_p3x_aac_h'
       };
       const streamOptions = { filter : 'audioonly', bitrate : 'auto', highWaterMark : 12  };
+      const kanalnavn = Object.keys(radioServers);
+
+      if (msg.content.toLowerCase() === '!nrk kanaler') {
+        msg.reply('**Kanaler**\n !nrk lytt ' + kanalnavn.toString());
+      }
 
   // Stop if prefix isn't used
   if (!msg.content.startsWith(prefix)) return;
@@ -94,7 +98,7 @@ client.on('message', msg => {
       });
       connection.on("error", error => console.error(error));
       dispatcher.on('error', console.error);
-  });
+});
 });
 
 //Help
@@ -111,6 +115,11 @@ const hjelp = {
     {
       "name": "Velg en kanal:",
       "value": "```!nrk <kanal>```"
+    },
+    {
+      "name": "Liste over kanaler:",
+      "value": "```!nrk kanaler```",
+      "inline": true
     },
     {
       "name": "Kast radioen ut av vinduet:",
