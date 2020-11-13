@@ -20,21 +20,21 @@ client.once("ready", () => {
   });
 
 client.on('message', msg => {
-  if (msg.author.bot) return;
   // Command can only be used in a server
-  if (!msg.guild) return msg.reply('Du kan bare sende meg kommandoer fra server jeg er med i :D');
+  if (!msg.guild) return msg.reply('Du kan bare sende meg kommandoer fra servere jeg er med i :D');
+  if (msg.author.bot) return;
 
   // Set required variables
-  const prefix = '!nrk lytt',
+  const prefix = '!nrk',
       args = msg.content.slice(prefix.length).split(' '),
       cmd = args.shift().toLowerCase(),
       radioChannel = (args.shift() || '').toLowerCase(),
       voiceChannel = msg.member.voice.channel,
       radioServers = {
           'p1': 'http://lyd.nrk.no/nrk_radio_p1_hordaland_aac_h',
-          'p2': 'http://lyd.nrk.no/nrk_radio_p2_mp3_m',
-          'p3': 'http://lyd.nrk.no/nrk_radio_p3_mp3_m',
-          'mp3': 'http://lyd.nrk.no/nrk_radio_mp3_mp3_m'
+          'p2': 'http://lyd.nrk.no/nrk_radio_p2_aac_h',
+          'p3': 'http://lyd.nrk.no/nrk_radio_p3_aac_h',
+          'mp3': 'http://lyd.nrk.no/nrk_radio_mp3_aac_h'
       };
       const streamOptions = { filter : 'audioonly', bitrate : 'auto', highWaterMark : 12  };
 
@@ -62,7 +62,6 @@ client.on('message', msg => {
           
           let method;
           switch (cmd1) {
-              case 'stop': method = 'destroy', msg.reply(`Stoppet: NRK ${radioChannel}`);
               case 'pause': return dispatcher.pause(true), msg.reply(`Pauset: NRK ${radioChannel}`);
               case 'fortsett': return dispatcher.resume(), msg.reply(`Fortsetter å spille: NRK ${radioChannel}`);
               case 'forlat': return voiceChannel.leave();
@@ -88,11 +87,11 @@ const hjelp = {
   "fields": [
     {
       "name": "Velg en kanal:",
-      "value": "```!nrk lytt <kanal>```"
+      "value": "```!nrk <kanal>```"
     },
     {
       "name": "Stopp radioen med:",
-      "value": "```!nrk lytt <kanal>```",
+      "value": "```!nrk stop```",
       "inline": true
     },
     {

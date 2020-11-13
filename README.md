@@ -16,6 +16,9 @@ npm install yargs
 ```
 npm install ffmpeg-static
 ```
+```
+npm install @discordjs/opus
+```
 
 ### Hvordan bruke
 ```
