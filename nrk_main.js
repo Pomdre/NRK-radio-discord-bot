@@ -41,9 +41,24 @@ client.on('message', msg => {
       voiceChannel = msg.member.voice.channel,
       radioServers = {
           'p1': 'http://lyd.nrk.no/nrk_radio_p1_hordaland_aac_h',
+          'p1 test': 'http://lyd.nrk.no/nrk_radio_p1_hordaland_aac_h',
+          'p1+': 'http://lyd.nrk.no/nrk_radio_p1pluss_aac_h',
+          'p1pluss': 'http://lyd.nrk.no/nrk_radio_p1pluss_aac_h',
           'p2': 'http://lyd.nrk.no/nrk_radio_p2_aac_h',
           'p3': 'http://lyd.nrk.no/nrk_radio_p3_aac_h',
-          'mp3': 'http://lyd.nrk.no/nrk_radio_mp3_aac_h'
+          'p13': 'http://lyd.nrk.no/nrk_radio_p13_aac_h',
+          'mp3': 'http://lyd.nrk.no/nrk_radio_mp3_aac_h',
+          'alltid nyheter': 'http://lyd.nrk.no/nrk_radio_alltid_nyheter_aac_h',
+          'super': 'http://lyd.nrk.no/nrk_radio_super_aac_h',
+          'klassisk': 'http://lyd.nrk.no/nrk_radio_klassisk_aac_h',
+          'sami': 'http://lyd.nrk.no/nrk_radio_sami_aac_h',
+          'jazz': 'http://lyd.nrk.no/nrk_radio_jazz_aac_h',
+          'folkemusikk': 'http://lyd.nrk.no/nrk_radio_folkemusikk_aac_h',
+          'sport': 'http://lyd.nrk.no/nrk_radio_sport_aac_h',
+          'urort': 'http://lyd.nrk.no/nrk_radio_urort_aac_h',
+          'urørt': 'http://lyd.nrk.no/nrk_radio_urort_aac_h',
+          'radioresepsjonen': 'http://lyd.nrk.no/nrk_radio_p3_radioresepsjonen_aac_h',
+          'p3x': 'http://lyd.nrk.no/nrk_radio_p3x_aac_h'
       };
       const streamOptions = { filter : 'audioonly', bitrate : 'auto', highWaterMark : 12  };
 
