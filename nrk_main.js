@@ -7,7 +7,7 @@ const client = new Discord.Client();
 const args = require('yargs').argv;
 
 let currentStatus = null;
-let commands = ['!nrk <kanal>', '!nrk pause', '!nrk fortsett', '!nrk forlat']
+let commands = ['!nrk <kanal>', '!nrk pause', '!nrk fortsett', '!nrk forlat', '!hjelp nrk']
 
 client.once("ready", () => {
     console.log(`Logged in as ${client.user.tag}!`);
@@ -126,7 +126,7 @@ const hjelp = {
 };
 
 client.on('message', msg => {
-  if (msg.content.toLowerCase() === '!nrk' + ' hjelp') {
+  if (msg.content.toLowerCase() === '!hjelp' + ' nrk') {
   msg.reply(hjelp);
   }
 });
