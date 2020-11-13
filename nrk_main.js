@@ -7,7 +7,7 @@ const client = new Discord.Client();
 const args = require('yargs').argv;
 
 let currentStatus = null;
-let commands = ['!nrk <kanal>', '!nrk pause', '!nrk fortsett', '!nrk forlat', '!hjelp nrk']
+let commands = ['!nrk <kanal>', '!nrk forlat', '!nrk hjelp']
 
 client.once("ready", () => {
     console.log(`Logged in as ${client.user.tag}!`);
@@ -34,7 +34,7 @@ client.on('message', msg => {
   if (msg.author.bot) return;
 
   // Set required variables
-  const prefix = '!nrk',
+  const prefix = '!nrk lytt',
       args = msg.content.slice(prefix.length).split(' '),
       cmd = args.shift().toLowerCase(),
       radioChannel = (args.shift() || '').toLowerCase(),
@@ -64,6 +64,7 @@ client.on('message', msg => {
 
       client.on('message', msg => {
         if (msg.author.bot) return;
+        var guild = msg.guild;
           // Set required variables
           const prefix = '!nrk ',
               args1 = msg.content.slice(prefix.length).split(' '),
@@ -71,9 +72,7 @@ client.on('message', msg => {
           
           let method;
           switch (cmd1) {
-              case 'pause': return dispatcher.pause(true), msg.reply(`Pauset: NRK ${radioChannel}`);
-              case 'fortsett': return dispatcher.resume(), msg.reply(`Fortsetter å spille: NRK ${radioChannel}`);
-              case 'forlat': return voiceChannel.leave();
+              case 'forlat': return guild.voice.channel.leave();
               default: return;
           }
           dispatcher[method];
@@ -99,16 +98,6 @@ const hjelp = {
       "value": "```!nrk <kanal>```"
     },
     {
-      "name": "Pause radioen med:",
-      "value": "```!nrk pause```",
-      "inline": true
-    },
-    {
-      "name": "Fortsett radioen etter den er pauset:",
-      "value": "```!nrk fortsett```",
-      "inline": true
-    },
-    {
       "name": "Kast radioen ut av vinduet:",
       "value": "```!nrk forlat```",
       "inline": true
@@ -126,7 +115,7 @@ const hjelp = {
 };
 
 client.on('message', msg => {
-  if (msg.content.toLowerCase() === '!hjelp' + ' nrk') {
+  if (msg.content.toLowerCase() === '!nrk hjelp') {
   msg.reply(hjelp);
   }
 });
