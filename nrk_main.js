@@ -31,7 +31,7 @@ client.once("ready", () => {
 
 client.on('message', msg => {
   // Command can only be used in a server
-  if (!msg.guild) return msg.reply('Du kan bare sende meg kommandoer fra servere jeg er med i :D');
+  if (!msg.guild) return msg.author.send('Du kan bare sende meg kommandoer fra servere jeg er med i :D').catch(console.error);
   if (msg.author.bot) return;
 
   // Set required variables
