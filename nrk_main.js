@@ -128,42 +128,19 @@ function info() {
 // Help
 client.on('message', msg => {
   if (msg.content.toLowerCase() === '!nrk hjelp') {
-  msg.reply(
-    {
-      "embed": {
-        "title": "NRK Radio Hjelp",
-        "description": "**Kommandoer for boten og annen info**",
-        "color": 16777215,
-        "footer": {
-          "text": `Laget av @Pomdre#0449 | Er med i ${client.guilds.cache.size} server(e)!`
-        },
-        "fields": [
-          {
-            "name": "Velg en kanal:",
-            "value": "```!nrk lytt <kanal>```"
-          },
-          {
-            "name": "Liste over kanaler:",
-            "value": "```!nrk kanaler```",
-            "inline": true
-          },
-          {
-            "name": "Kast radioen ut av vinduet:",
-            "value": "```!nrk forlat```",
-            "inline": true
-          },
-          {
-            "name": "Inviter meg:",
-            "value": "https://discordapp.com/oauth2/authorize?client_id=638025532688171027&permissions=66186560&scope=bot"
-          },
-          {
-            "name": "Kildekoden min:",
-            "value": "https://github.com/Pomdre/NRK-radio-discord-bot"
-          }
-        ]
-       }
-    }
-  );
+  const help = new Discord.MessageEmbed()
+	.setColor(255, 255, 255)
+	.setTitle('NRK Radio Hjelp')
+	.setDescription('**Kommandoer for boten og annen info**')
+	.addFields(
+		{ name: 'Velg en kanal:', value: '```!nrk lytt <kanal>```' },
+		{ name: 'Liste over kanaler:', value: '```!nrk kanaler```', inline: true },
+		{ name: 'Kast radioen ut av vinduet:', value: '```!nrk forlat```', inline: true },
+    { name: 'Inviter meg:', value: 'https://discordapp.com/oauth2/authorize?client_id=638025532688171027&permissions=66186560&scope=bot' },
+    { name: 'Kildekoden min:', value: 'https://github.com/Pomdre/NRK-radio-discord-bot' },
+	)
+	.setFooter(`Laget av @Pomdre#0449 | Er med i ${client.guilds.cache.size} server(e)!`);
+  msg.reply(help)
   }
 });
 
