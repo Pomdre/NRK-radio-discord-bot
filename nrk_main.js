@@ -120,7 +120,6 @@ function info() {
   .then(connection => {
       const dispatcher = connection.play(domain + radioServers[radioChannel], streamOptions);
       info();
-      msg.reply(playing);
 
       client.on('message', msg => {
         if (msg.author.bot) return;
