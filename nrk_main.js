@@ -65,7 +65,16 @@ client.on('message', msg => {
       const kanalnavn = Object.keys(radioServers);
 
       if (msg.content.toLowerCase() === '!nrk kanaler') {
-        msg.reply('**Kanaler**\n !nrk lytt ' + kanalnavn.toString());
+        const kanaler = new Discord.MessageEmbed()
+        .setColor(255, 255, 255)
+        .setAuthor('NRK Radio', 'https://imal.no/wp-content/uploads/2016/02/nrk-radio.png')
+        .setTitle('Kanaler:')
+        for (const [key, value] of Object.entries(radioServers)) {
+          kanaler.addFields(
+            { name: '!nrk lytt ', value: key, inline: true},
+          )
+        }
+        msg.reply(kanaler);
       }
 
   // Stop if prefix isn't used
@@ -90,7 +99,15 @@ function info() {
     res.on("data", function(chunk) {
       var patt = /(?<=title>)(.*)(?=[<])/;
       var result = String(chunk).match(patt);
-      msg.reply(result[0]);
+
+      const playing = new Discord.MessageEmbed()
+      .setColor(255, 255, 255)
+      .setAuthor('NRK Radio', 'https://imal.no/wp-content/uploads/2016/02/nrk-radio.png')
+      .addFields(
+        { name: 'Du hører på:', value: `NRK ${radioChannel}` },
+        { name: 'Spiller nå:', value: result[0] },
+      )
+      msg.reply(playing);
     });
   }).on('error', function(e) {
     console.log("Got error: " + e.message);
@@ -102,8 +119,8 @@ function info() {
   voiceChannel.join()
   .then(connection => {
       const dispatcher = connection.play(domain + radioServers[radioChannel], streamOptions);
-      msg.reply(`Spiller nå: NRK ${radioChannel}`);
       info();
+      msg.reply(playing);
 
       client.on('message', msg => {
         if (msg.author.bot) return;
@@ -130,7 +147,8 @@ client.on('message', msg => {
   if (msg.content.toLowerCase() === '!nrk hjelp') {
   const help = new Discord.MessageEmbed()
 	.setColor(255, 255, 255)
-	.setTitle('NRK Radio Hjelp')
+  .setAuthor('NRK Radio', 'https://imal.no/wp-content/uploads/2016/02/nrk-radio.png')
+	.setTitle('Hjelp')
 	.setDescription('**Kommandoer for boten og annen info**')
 	.addFields(
 		{ name: 'Velg en kanal:', value: '```!nrk lytt <kanal>```' },
