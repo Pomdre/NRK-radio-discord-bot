@@ -145,7 +145,7 @@ function info() {
 client.on('message', msg => {
   if (msg.content.toLowerCase() === '!nrk hjelp') {
   const help = new Discord.MessageEmbed()
-	.setColor(255, 255, 255)
+	.setColor('fafafa')
   .setAuthor('NRK Radio', 'https://imal.no/wp-content/uploads/2016/02/nrk-radio.png')
 	.setTitle('Hjelp')
 	.setDescription('**Kommandoer for boten og annen info**')
