@@ -66,7 +66,7 @@ client.on('message', msg => {
 
       if (msg.content.toLowerCase() === '!nrk kanaler') {
         const kanaler = new Discord.MessageEmbed()
-        .setColor(255, 255, 255)
+        .setColor('fafafa')
         .setAuthor('NRK Radio', 'https://imal.no/wp-content/uploads/2016/02/nrk-radio.png')
         .setTitle('Kanaler:')
         for (const [key, value] of Object.entries(radioServers)) {
@@ -101,7 +101,7 @@ function info() {
       var result = String(chunk).match(patt);
 
       const playing = new Discord.MessageEmbed()
-      .setColor(255, 255, 255)
+      .setColor('fafafa')
       .setAuthor('NRK Radio', 'https://imal.no/wp-content/uploads/2016/02/nrk-radio.png')
       .addFields(
         { name: 'Du hører på:', value: `NRK ${radioChannel}` },
