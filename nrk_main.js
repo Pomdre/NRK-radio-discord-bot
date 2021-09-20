@@ -144,7 +144,7 @@ function info() {
 
 // Help
 client.on('message', msg => {
-  if (msg.content.toLowerCase() === '!nrk hjelp') {
+  if (msg.content.toLowerCase() === '!nrk hjelp' || msg.content.toLowerCase() === '!nrk') {
   const help = new Discord.MessageEmbed()
 	.setColor('fafafa')
   .setAuthor('NRK Radio Uoffisiell', 'https://www.dropbox.com/s/mbkfol58jqgpdzv/nrk-radio-uoffisiell.png?dl=0&raw=1')
