@@ -50,7 +50,7 @@ client.on('message', msg => {
           'p3': '/nrk_radio_p3_aac_h',
           'p13': '/nrk_radio_p13_aac_h',
           'mp3': '/nrk_radio_mp3_aac_h',
-          'alltid nyheter': '/nrk_radio_alltid_nyheter_aac_h',
+          'nyheter': '/nrk_radio_alltid_nyheter_aac_h',
           'super': '/nrk_radio_super_aac_h',
           'klassisk': '/nrk_radio_klassisk_aac_h',
           'sami': '/nrk_radio_sami_aac_h',
