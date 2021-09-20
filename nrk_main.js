@@ -85,7 +85,7 @@ client.on('message', msg => {
   if (!voiceChannel) return msg.reply('Du må være i en talekanal først!');
 
   // Require a valid radio server
-  if (typeof radioServers[radioChannel] !== 'string') return msg.reply(`${radioChannel} er ikke en gyldig tjener!`);
+  if (typeof radioServers[radioChannel] !== 'string') return msg.reply(`${radioChannel} er ikke en gyldig radio kanal! (Prøv: !nrk kanaler)`);
 
 function info() {
   var options = {
