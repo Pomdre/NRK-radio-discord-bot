@@ -1,6 +1,7 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //  Invite https://discordapp.com/oauth2/authorize?client_id=638025532688171027&permissions=66186560&scope=bot          //
-//  Laget av @Pomdre                                                                                                    //
+//  Laget av @Pomdre                                                                                                    //       
+//  Denne discord boten er uoffisiell og ikke tilknyttet nrk på noen som helst måte                                     //
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 const Discord = require('discord.js');
 const client = new Discord.Client();
@@ -67,7 +68,7 @@ client.on('message', msg => {
       if (msg.content.toLowerCase() === '!nrk kanaler') {
         const kanaler = new Discord.MessageEmbed()
         .setColor('fafafa')
-        .setAuthor('NRK Radio', 'https://imal.no/wp-content/uploads/2016/02/nrk-radio.png')
+        .setAuthor('NRK Radio Uoffisiell', 'https://www.dropbox.com/s/mbkfol58jqgpdzv/nrk-radio-uoffisiell.png?dl=0&raw=1')
         .setTitle('Kanaler:')
         for (const [key, value] of Object.entries(radioServers)) {
           kanaler.addFields(
@@ -102,7 +103,7 @@ function info() {
 
       const playing = new Discord.MessageEmbed()
       .setColor('fafafa')
-      .setAuthor('NRK Radio', 'https://imal.no/wp-content/uploads/2016/02/nrk-radio.png')
+      .setAuthor('NRK Radio', 'https://www.dropbox.com/s/mbkfol58jqgpdzv/nrk-radio-uoffisiell.png?dl=0&raw=1')
       .addFields(
         { name: 'Du hører på:', value: `NRK ${radioChannel}` },
         { name: 'Spiller nå:', value: result[0] },
@@ -146,7 +147,7 @@ client.on('message', msg => {
   if (msg.content.toLowerCase() === '!nrk hjelp') {
   const help = new Discord.MessageEmbed()
 	.setColor('fafafa')
-  .setAuthor('NRK Radio', 'https://imal.no/wp-content/uploads/2016/02/nrk-radio.png')
+  .setAuthor('NRK Radio Uoffisiell', 'https://www.dropbox.com/s/mbkfol58jqgpdzv/nrk-radio-uoffisiell.png?dl=0&raw=1')
 	.setTitle('Hjelp')
 	.setDescription('**Kommandoer for boten og annen info**')
 	.addFields(
@@ -156,7 +157,7 @@ client.on('message', msg => {
     { name: 'Inviter meg:', value: 'https://discordapp.com/oauth2/authorize?client_id=638025532688171027&permissions=66186560&scope=bot' },
     { name: 'Kildekoden min:', value: 'https://github.com/Pomdre/NRK-radio-discord-bot' },
 	)
-	.setFooter(`Laget av @Pomdre#0449 | Er med i ${client.guilds.cache.size} server(e)!`);
+	.setFooter(`Laget av @Pomdre#0449 | Er med i ${client.guilds.cache.size} server(e)! \n *Denne discord boten er uoffisiell og ikke tilknyttet nrk på noen som helst måte*`);
   msg.reply(help)
   }
 });
