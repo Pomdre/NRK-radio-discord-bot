@@ -1,5 +1,5 @@
-# NRK-radio-discord-bot
-En radio bot for nrk og discord
+# NRK-radio-discord-bot-uoffisiell
+En radio bot for nrk-uoffisiell og discord
 
 ### Installer
 
