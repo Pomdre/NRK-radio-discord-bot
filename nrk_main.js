@@ -58,7 +58,6 @@ client.on('message', msg => {
           'sport': '/nrk_radio_sport_aac_h',
           'urort': '/nrk_radio_urort_aac_h',
           'urørt': '/nrk_radio_urort_aac_h',
-          'radioresepsjonen': '/nrk_radio_p3_radioresepsjonen_aac_h',
           'p3x': '/nrk_radio_p3x_aac_h',
           'Evenement1': '/nrk_radio_weblyd01_aac_h',
           // Loakl radio
