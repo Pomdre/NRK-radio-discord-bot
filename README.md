@@ -1,5 +1,7 @@
 # NRK-radio-discord-bot-uoffisiell
 En radio bot for nrk-uoffisiell og discord
+Denne discord boten er uoffisiell og ikke tilknyttet nrk på noen som helst måte      
+Legg meg til på din server: https://discordapp.com/oauth2/authorize?client_id=638025532688171027&permissions=66186560&scope=bot  
 
 ### Installer
 
