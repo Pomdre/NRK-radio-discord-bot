@@ -59,7 +59,6 @@ client.on('message', msg => {
           'urort': '/nrk_radio_urort_aac_h',
           'urørt': '/nrk_radio_urort_aac_h',
           'p3x': '/nrk_radio_p3x_aac_h',
-          'Evenement1': '/nrk_radio_weblyd01_aac_h',
           // Loakl radio
           'P1-Buskerud': '/nrk_radio_p1_buskerud_aac_h',
           'P1-Finnmark': '/nrk_radio_p1_finnmark_aac_h',
