@@ -45,7 +45,6 @@ client.on('message', msg => {
       radioServers = {
           'p1': '/nrk_radio_p1_hordaland_aac_h',
           'p1+': '/nrk_radio_p1pluss_aac_h',
-          'p1pluss': '/nrk_radio_p1pluss_aac_h',
           'p2': '/nrk_radio_p2_aac_h',
           'p3': '/nrk_radio_p3_aac_h',
           'p13': '/nrk_radio_p13_aac_h',
@@ -60,7 +59,24 @@ client.on('message', msg => {
           'urort': '/nrk_radio_urort_aac_h',
           'urørt': '/nrk_radio_urort_aac_h',
           'radioresepsjonen': '/nrk_radio_p3_radioresepsjonen_aac_h',
-          'p3x': '/nrk_radio_p3x_aac_h'
+          'p3x': '/nrk_radio_p3x_aac_h',
+          'Evenement1': '/nrk_radio_weblyd01_aac_h',
+          // Loakl radio
+          'P1-Buskerud': '/nrk_radio_p1_buskerud_aac_h',
+          'P1-Finnmark': '/nrk_radio_p1_finnmark_aac_h',
+          'P1-Innlandet': '/nrk_radio_p1_innlandet_aac_h',
+          'P1-Hordaland': '/nrk_radio_p1_hordaland_aac_h',
+          'P1-Møre-og-Romsdal': '/nrk_radio_p1_more_og_romsdal_aac_h',
+          'P1-Nordland': '/nrk_radio_p1_nordland_aac_h',
+          'P1-Østfold': '/nrk_radio_p1_ostfold_aac_h',
+          'P1-Østlandssendingen': '/nrk_radio_p1_ostlandssendingen_aac_h',
+          'P1-Rogaland': '/nrk_radio_p1_rogaland_aac_h',
+          'P1-Sogn-og-Fjordane': '/nrk_radio_p1_sogn_og_fjordane_aac_h',
+          'P1-Sørlandet': '/nrk_radio_p1_sorlandet_aac_h',
+          'P1-Telemark': '/nrk_radio_p1_telemark_aac_h',
+          'P1-Troms': '/nrk_radio_p1_troms_aac_h',
+          'P1-Trøndelag': '/nrk_radio_p1_trondelag_aac_h',
+          'P1-Vestfold': '/nrk_radio_p1_vestfold_aac_h'
       };
       const streamOptions = { filter : 'audioonly', bitrate : 'auto', highWaterMark : 12  };
       const kanalnavn = Object.keys(radioServers);
